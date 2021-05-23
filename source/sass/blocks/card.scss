@@ -1,0 +1,284 @@
+//Функция извлечения из квадратного корня - нужна для расчета гипотенузы псевдоэлемента с градиентом, чтобы знать середину градиентной части - вместо calc(50% - px) - не корректно работает в ie11
+@function sqrt($r) { /* stylelint-disable-line */
+  $x0: 1;
+  $x1: $x0;
+
+  @for $i from 1 through 10 { /* stylelint-disable-line */
+    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x0: $x1;
+  }
+
+  @return $x1; /* stylelint-disable-line */
+}
+
+$border-size: 4px;
+$border-radius: 12px;
+
+//квадратный элемент с градиентом
+$number-size: 43;
+$slice-size: #{$number-size}px;
+$slize-diagonal: sqrt($number-size * $number-size * 2);
+$transition-first: $slize-diagonal / 2 - ($border-size / 2 - 1px);
+$transition-second: $slize-diagonal / 2 + ($border-size / 2 + 1px);
+
+$img-height: 272px;
+
+$link-border-size: 1px;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: $card-width;
+  font-family: $basic-font;
+}
+
+.card--selected {
+  .card__main-content {
+    &::before {
+      border-color: $pink-base;
+    }
+
+    &::after {
+      background-image: linear-gradient(135deg, rgba($white-base, 0) #{$transition-first}, $pink-base #{$transition-first}, $pink-base #{$transition-second}, $card-back #{$transition-second});
+    }
+
+    .card__inner {
+      border-color: $pink-base;
+    }
+
+    .card__weight {
+      background-color: $pink-base;
+    }
+  }
+}
+
+.card--selected-hover {
+  .card__main-content {
+    &::before {
+      border-color: $pink-extra;
+    }
+
+    &::after {
+      background-image: linear-gradient(135deg, rgba($white-base, 0) #{$transition-first}, $pink-extra #{$transition-first}, $pink-extra #{$transition-second}, $card-back #{$transition-second});
+    }
+
+    .card__inner {
+      border-color: $pink-extra;
+    }
+
+    .card__weight {
+      background-color: $pink-extra;
+    }
+
+    .card__note {
+      color: $pink-extra;
+    }
+  }
+}
+
+.card--disabled {
+  .card__main-content {
+    &::before {
+      border-color: $gray-extra;
+    }
+
+    &::after {
+      background-image: linear-gradient(135deg, rgba($white-base, 0) #{$transition-first}, $gray-extra #{$transition-first}, $gray-extra #{$transition-second}, $card-back #{$transition-second});
+    }
+
+    &:hover {
+      cursor: default;
+    }
+
+    .card__inner {
+      border-color: $gray-extra;
+    }
+
+    .card__title,
+    .card__note,
+    .card__features {
+      color: $gray-extra;
+      opacity: 0.5;
+    }
+
+    .card__img {
+      opacity: 0.5;
+    }
+
+    .card__weight {
+      background-color: $gray-extra;
+    }
+  }
+
+  .card__extra-content {
+    color: $yellow-base;
+  }
+}
+
+.card:not(.card--selected):not(.card--selected-hover):not(.card--disabled) {
+  .card__main-content:hover {
+    &::before {
+      border-color: $blue-extra;
+    }
+
+    &::after {
+      background-image: linear-gradient(135deg, rgba($white-base, 0) #{$transition-first}, $blue-extra #{$transition-first}, $blue-extra #{$transition-second}, $card-back #{$transition-second});
+    }
+
+    .card__inner {
+      border-color: $blue-extra;
+    }
+
+    .card__weight {
+      background-color: $blue-extra;
+    }
+  }
+}
+
+.card__main-content {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start;
+
+  margin-bottom: 14px;
+
+  &::before {
+    content: "";
+    width: $slice-size;
+    margin-top: $slice-size;
+    background-color: $card-back;
+    border: $border-size solid $blue-base;
+    border-top: none;
+    border-right: none;
+    border-radius: 0 0 0 $border-radius;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $slice-size;
+    height: $slice-size;
+
+    background-image: linear-gradient(135deg, rgba($white-base, 0) #{$transition-first}, $blue-base #{$transition-first}, $blue-base #{$transition-second}, $card-back #{$transition-second});
+  }
+}
+
+.card__inner {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  min-height: 480px;
+  padding: 17px $slice-size $img-height 0;
+  background-color: $card-back;
+  border: $border-size solid $blue-base;
+  border-left: none;
+  border-radius: 0 $border-radius $border-radius 0;
+}
+
+.card__title {
+  margin: 0 0 15px 5px;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 56px;
+  color: $black-base;
+}
+
+.card__taste {
+  display: block;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.card__note {
+  order: -1;
+  margin: 0 0 5px 8px;
+  font-size: 16px;
+  line-height: 19px;
+  color: $gray-base;
+
+  &--selected {
+    display: none;
+  }
+}
+
+.card__features {
+  @include list-reset;
+  margin-left: 8px;
+  font-size: 14px;
+  line-height: 16px;
+  color: $gray-base;
+}
+
+.card__weight {
+  $weight-size: 80px;
+
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: $base-index + 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-width: $weight-size;
+  //min-height: $weight-size; - не работает вертикальное выравнивание в ie11
+  height: $weight-size;
+  margin: 0;
+  color: $white-base;
+  background-color: $blue-base;
+  border-radius: 50%;
+}
+
+.card__weight-number {
+  font-size: 42px;
+}
+
+.card__weight-text {
+  font-size: 21px;
+  line-height: 22px;
+}
+
+.card__img {
+  position: absolute;
+  bottom: $border-size;
+  left: $border-size;
+  width: $card-width;
+  height: $img-height;
+  vertical-align: top;
+  border-bottom-left-radius: $border-radius - 5px;
+}
+
+.card__extra-content {
+  $line-height: 15px;
+
+  min-height: $line-height + $link-border-size;
+  margin: 0;
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
+  color: $white-base;
+}
+
+.card__link-wrap {
+  &--hidden {
+    display: none;
+  }
+}
+
+.card__link {
+  display: inline-block;
+  color: $blue-base;
+  border-bottom: 1px dashed $blue-base;
+
+  &:hover {
+    color: $blue-extra;
+    border-color: $blue-extra;
+  }
+}

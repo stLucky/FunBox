@@ -1,0 +1,34 @@
+// Colors
+$black-base: #000000;
+$white-base: #ffffff;
+$card-back: #f2f2f2;
+$gray-base: #666666;
+$gray-extra: #b3b3b3;
+$blue-base: #1698d9;
+$blue-extra: #2ea8e6;
+$pink-base: #d91667;
+$pink-extra: #e52e7a;
+$yellow-base: #ffff66;
+
+// Fonts
+
+$basic-font: "Trebuchet MS", "Arial", sans-serif;
+$extra-font: "Exo 2.0", "Arial", sans-serif;
+
+// Viewports
+
+$tablet-width: 768px;
+$desktop-width: 1280px;
+
+$tablet: "(min-width: #{$tablet-width})";
+$desktop: "(min-width: #{$desktop-width})";
+
+// Transition
+
+$transition-duration: 200ms;
+
+// Other
+
+$base-index: 0;
+$card-width: 320px;
+$paddings-mobile: 20px;

@@ -1,0 +1,39 @@
+$pattern-size: 140px;
+
+.page {
+  height: 100%;
+}
+
+.page__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: $paddings-mobile * 2 + $card-width;
+  min-height: 100%;
+  padding: 40px 0;
+  background-color: $black-base;
+  background-image: url("../img/pattern.jpg");
+  background-size: $pattern-size $pattern-size;
+
+  @media (min-resolution: 2dppx) {
+    background-image: url("../img/pattern@2x.jpg");
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(180deg, rgba($black-base, 0.5) 0, rgba($black-base, 0) 50%, rgba(0, 0, 0, 0.5) 100%);
+    pointer-events: none;
+  }
+}
+
+.page__products {
+  position: relative;
+  z-index: $base-index + 1;
+}

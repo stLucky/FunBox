@@ -1,0 +1,36 @@
+@font-face {
+  font-style: normal;
+  font-weight: 250;
+  font-family: "Exo 2.0";
+  font-display: swap;
+  src: local("Exo-2.0-Thin"),
+    local("Exo 2.0 Thin"),
+    url("../fonts/Exo-2.0-Thin.woff2") format("woff2"),
+    url("../fonts/Exo-2.0-Thin.woff") format("woff");
+  unicode-range: u+0022-04c0;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Trebuchet MS";
+  font-display: swap;
+  src: local("Trebuchet-MS-Regular"),
+    local("Trebuchet MS Regular"),
+    local("Trebuchet MS"),
+    url("../fonts/Trebuchet-MS.woff2") format("woff2"),
+    url("../fonts/Trebuchet-MS.woff") format("woff");
+  unicode-range: u+0022-0491;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 700;
+  font-family: "TrebuchetMS";
+  font-display: swap;
+  src: local("Trebuchet-MS-Bold"),
+    local("Trebuchet MS Bold"),
+    url("../fonts/Trebuchet-MS-Bold.woff2") format("woff2"),
+    url("../fonts/Trebuchet-MS-Bold.woff") format("woff");
+  unicode-range: u+0022-0491;
+}
