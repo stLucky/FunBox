@@ -145,6 +145,7 @@ $link-border-size: 1px;
 
   &::before {
     content: "";
+    flex-shrink: 0;
     width: $slice-size;
     margin-top: $slice-size;
     background-color: $card-back;

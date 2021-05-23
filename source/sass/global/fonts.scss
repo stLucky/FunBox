@@ -1,13 +1,13 @@
 @font-face {
   font-style: normal;
-  font-weight: 250;
+  font-weight: 100;
   font-family: "Exo 2.0";
   font-display: swap;
   src: local("Exo-2.0-Thin"),
     local("Exo 2.0 Thin"),
     url("../fonts/Exo-2.0-Thin.woff2") format("woff2"),
     url("../fonts/Exo-2.0-Thin.woff") format("woff");
-  unicode-range: u+0022-04c0;
+  unicode-range: u+0020-04c0;
 }
 
 @font-face {

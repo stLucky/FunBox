@@ -3,6 +3,7 @@ $offset-desktop: 40px;
 
 .products__slogan {
   margin: 0 0 24px;
+  font-weight: 100;
   font-size: 36px;
   line-height: 44px;
   font-family: $extra-font;
@@ -35,8 +36,8 @@ $offset-desktop: 40px;
   }
 
   @media #{$desktop} {
-    margin: -$offset-desktop;
     justify-content: flex-start;
+    margin: -$offset-desktop;
   }
 }
 
